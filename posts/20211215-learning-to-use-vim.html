@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Learning to Use Vim</title>
+		<link rel="stylesheet" href="../style.css" type="text/css">
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<nav>
+			<ul>
+				<li><a href="../index.html">Index</a></li>
+				<li><a href="../about.html">About</a></li>
+			</ul>
+		</nav>
+		<main>
+			<h1>Learning to Use Vim</h1>
+			<time>2021-12-15</time>
+			<p>My first project is to learn how to use Vim. Recently I became
+			interested in programming and I was looking for a text editor I could
+			use. I saw many people recommending Visual Studio Code, but it seemed too
+			complicated and while researching I found Vim. I was amazed by both its
+			usability and the history it has.</p>
+			<p>I spent most of my free time reading Vim documentation and online
+			guides about Vim. It is a very customizable text editor, so there are
+			tons of things to do. Despite this, I have to remind you, do not spend
+			too much time configuring and get to work. I spent too much time
+			configuring my .vimrc file and eventually decided to delete it and
+			replace it with a simple but effective .vimrc. For those interested, here
+			it is:</p>
+			<pre><code>filetype plugin indent on
+set autoindent
+set clipboard=unnamed
+set incsearch ignorecase smartcase
+set laststatus=2
+set nomodeline
+set shortmess=asWAIcF
+set statusline=\ %f\ %m%=%l:%-3c\ "
+set wildmenu
+let mapleader = ' '
+nnoremap &#60;leader&#62;l :ls&#60;CR&#62;:b&#60;space&#62;
+nnoremap &#60;silent&#62; &#60;leader&#62;n :set nu! cul!&#60;CR&#62;</code></pre>
+		</main>
+	</body>
+</html>

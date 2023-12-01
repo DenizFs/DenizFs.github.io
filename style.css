@@ -1,0 +1,28 @@
+body {
+	background: #080808;
+	color: #c7c7c7;
+	font: 16px/1.4 sans-serif;
+	margin: auto;
+	max-width: 39em;
+	padding: 0 0.5em
+}
+
+nav ul { border-bottom: 1px solid #616161; margin: 0; padding: 0.5em 0 }
+nav ul li { display: inline; margin-right: 2em }
+
+h1, h2 { line-height: 1em }
+a { color: #c7c7c7 }
+a:hover { color: #616161 }
+
+code { background: #1c1c1c; padding: 0 0.1em }
+code, pre { border-radius: 0.2em }
+pre { overflow: auto; padding: 0.2em }
+pre, pre code { background: #121212; display: block }
+
+img {
+	border: 1px solid #616161;
+	display: block;
+	margin: 1em auto;
+	max-width: 100%;
+	padding: 2px
+}

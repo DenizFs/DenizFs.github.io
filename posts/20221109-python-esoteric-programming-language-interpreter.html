@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Python: Esoteric Programming Language Interpreter</title>
+		<link rel="stylesheet" href="../style.css" type="text/css">
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<nav>
+			<ul>
+				<li><a href="../index.html">Index</a></li>
+				<li><a href="../about.html">About</a></li>
+			</ul>
+		</nav>
+		<main>
+			<h1>Python: Esoteric Programming Language Interpreter</h1>
+			<time>2022-11-09</time>
+			<p>After programming in C and understanding the fundamentals of
+			programming, I decided to learn a higher-level programming language and
+			program a simple project. While researching programming languages and
+			paradigms, I came across a language whose name I will refrain from
+			mentioning due to its inappropriateness.</p>
+			<p>This language has only eight commands: "><+-.,[]". Most commands were
+			very easy to implement thanks to the simplicity of the language, with the
+			exception of square brackets. For them, I used pen and paper to come up
+			with an algorithm that would work as the file content was read, without
+			first creating a dictionary of square brackets. Instead, I used a stack
+			data structure, which is perfect for this kind of last in, first out
+			data.</p>
+			<p>After having developed a working interpreter, I challenged myself to
+			write this as concisely and cleanly as possible to learn more about
+			Python. The final version of my program looks like this:</p>
+			<pre><code>import sys, os
+
+f = open(sys.argv[1], 'r')
+program, ip = list(filter(lambda c: c in "><+-.,[]", f.read())), 0
+cells, cell_ptr = [0] * 30000, 0
+brackets, bracket_cnt = [], 0
+
+while ip < len(program):
+    op = program[ip]
+
+    if op == '>': cell_ptr += 1
+    elif op == '<': cell_ptr -= 1
+    elif op == '+': cells[cell_ptr] = cells[cell_ptr] + 1 if cells[cell_ptr] < 255 else 0
+    elif op == '-': cells[cell_ptr] = cells[cell_ptr] - 1 if cells[cell_ptr] > 0 else 255
+    elif op == '.': os.write(1, cells[cell_ptr].to_bytes())
+    elif op == ',': cells[cell_ptr] = ord(os.read(0, 1))
+    elif op == '[':
+        if cells[cell_ptr]: brackets.append(ip)
+        else:
+            while not (program[ip] == ']' and bracket_cnt == 0):
+                if program[ip] == '[': bracket_cnt += 1
+                elif program[ip] == ']': bracket_cnt -= 1
+                if bracket_cnt: ip += 1
+    elif op == ']':
+        if cells[cell_ptr]: ip = brackets[-1]
+        else: brackets.pop()
+
+    ip += 1
+
+f.close()</code></pre>
+		</main>
+	</body>
+</html>
